@@ -2,7 +2,7 @@ name: TMT-Charts-CI
 
 on: 
   pull_request
-    types: [assigned,opened,closed,labeled]
+    types: [closed]
 
   
 jobs:
