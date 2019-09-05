@@ -10,7 +10,7 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v1
     
-    - name: Merge branch delete name
+    - name: Merge branch delete
       uses: jessfraz/branch-cleanup-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
