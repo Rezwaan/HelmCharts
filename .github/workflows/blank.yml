@@ -39,7 +39,7 @@ jobs:
         echo $FILENAME
         curl --user $TMT_CHARTS_USERNAME:$TMT_CHARTS_PASSWORD --data-binary "@$FILENAME" http://localhost:8080/api/charts
       continue-on-error: true 
-    - name: Merge branch delete
+    - name: Merge branch delete name
       uses: jessfraz/branch-cleanup-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
