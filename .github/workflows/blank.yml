@@ -1,13 +1,7 @@
 name: TMT-Charts-CI
 
-on:
-  push:
-    branches:
-      - '*'
-      - actions-ci
-      - junk-ci
-
-
+on: pull_request
+  
 jobs:
   build:
     runs-on: ubuntu-latest
