@@ -5,41 +5,12 @@ on: pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: docker://rizwan937/helm
-
+    
     steps:
     - name: Checkout Code
       uses: actions/checkout@v1
     
-    - name: Validate and Upload Chart to Chart Museum
-      env:
-        TMT_CHARTS_USERNAME: ${{ secrets.TMT_CHARTS_USERNAME}}
-        TMT_CHARTS_PASSWORD: ${{ secrets.TMT_CHARTS_PASSWORD }}
-      run: |
-        export PAGER=$(git diff-tree --no-commit-id --name-only -r HEAD)
-        echo "Changed Components are  => $PAGER"
-        export COMPONENT="NOTSET"
-        for CHANGE in $PAGER; do ENV_DIR=${CHANGE%%/*}; done
-        for CHANGE in $PAGER; do if [[ "$CHANGE" != .* ]] && [[ "$ENV_DIR" == "${CHANGE%%/*}" ]]; then export COMPONENT="$CHANGE"; elif [[ "$CHANGE" == .* ]]; then echo "Not a Valid Dir for Helm Chart" ; else echo "Only one component per PR should be changed" && exit 1; fi; done
-        if [ "$COMPONENT" == "NOTSET" ]; then echo "No component is changed!" && exit 1;  fi
-        echo "Initializing Component => $COMPONENT"
-        echo $COMPONENT | cut -f1 -d"/"
-        export COMPONENT_DIR="${COMPONENT%%/*}"
-        echo "Changed Dir => $COMPONENT_DIR"
-        cd $COMPONENT_DIR
-        echo "Initialize Helm and Upload Chart If Exists"
-        helm init --client-only
-        echo "Helm Adding Chart repo"
-        helm repo add charts http://localhost:8080 --username $TMT_CHARTS_USERNAME --password $TMT_CHARTS_PASSWORD
-        helm dep build
-        helm package .
-        FILENAME="$(find . \( -name "$COMPONENT_DIR*.tgz" \) -exec basename {} \;)"
-        if [ "$FILENAME" == "" ]; then echo "No Chart Version Found!" && exit 1;  fi
-        echo $FILENAME
-        curl --user $TMT_CHARTS_USERNAME:$TMT_CHARTS_PASSWORD --data-binary "@$FILENAME" http://localhost:8080/api/charts
-      continue-on-error: true 
-    - name: Merge branch delete
+    - name: Merge branch delete name
       uses: jessfraz/branch-cleanup-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
