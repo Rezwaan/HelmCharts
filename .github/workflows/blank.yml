@@ -4,7 +4,12 @@ on: pull_request
   
 jobs:
   build:
+    runs-on: ubuntu-latest
+    
     steps:
+    - name: Checkout Code
+      uses: actions/checkout@v1
+    
     - name: Merge branch delete name
       uses: jessfraz/branch-cleanup-action@master
       env:
