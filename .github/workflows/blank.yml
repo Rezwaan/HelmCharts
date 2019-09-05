@@ -3,9 +3,10 @@ name: TMT-Charts-CI
 on:
   push:
     branches:
-      - master
+      - '*'
       - actions-ci
       - junk-ci
+
 
 jobs:
   build:
