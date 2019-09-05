@@ -1,6 +1,9 @@
 name: TMT-Charts-CI
 
-on: pull_request
+on: 
+  pull_request
+    types: [assigned,opened,closed,labeled]
+
   
 jobs:
   build:
