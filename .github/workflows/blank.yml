@@ -1,6 +1,7 @@
 name: TMT-Charts-CI
 
 on:
+  pull_request
   push:
     branches:
       - '*'
