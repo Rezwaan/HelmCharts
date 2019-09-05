@@ -46,5 +46,7 @@ jobs:
       continue-on-error: true 
     - name: Merge branch delete
       uses: jessfraz/branch-cleanup-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   
