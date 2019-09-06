@@ -1,4 +1,4 @@
-name: TMT-Charts-CI
+name: PR-Branch-Removal
 
 on: 
   pull_request:
