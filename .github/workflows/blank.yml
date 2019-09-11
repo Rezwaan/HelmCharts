@@ -24,10 +24,10 @@ jobs:
         export PAGER=$(git diff-tree --no-commit-id --name-only -r HEAD)
         echo "Changed Components are  => $PAGER"
         export COMPONENT="NOTSET"
-        unique_dirs=($(tr ' ' '\n' <<< "${PAGER[@]}" | uniq | tr '\n' ' '))
+        unique_dirs=($(tr ' ' '\n' <<< "${PAGER[@]}" | sort -u | tr '\n' ' '))
 
         echo "CHANGED DIRS ARE::::"
-        for dir in $unique_dirs
+        for dir in $unique_dirs[@]
         do
           echo $dir        
           if [ "$dir" == .* ]; then del=$dir; fi
@@ -35,7 +35,7 @@ jobs:
         unique_dirs=("${unique_dirs[@]/$del}")
 
 
-        for dir in $unique_dirs
+        for dir in $unique_dirs[@]
         do
           echo $dir | cut -f1 -d"/"
           export COMPONENT_DIR="${dir%%/*}"
