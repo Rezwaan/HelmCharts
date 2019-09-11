@@ -30,9 +30,13 @@ jobs:
         for dir in ${unique_dirs[@]}
         do
           echo $dir        
-          if [ "$dir" == .* ]; then del=$dir; fi
+          if [[ "$dir" == .* ]]; then del="$dir"; fi
         done
+        echo "Getting Unique Values:::"
+
         unique_dirs=("${unique_dirs[@]/$del}")
+        echo "Unique Values Are:::"
+        echo ${unique_dirs[@]}
 
 
         for dir in ${unique_dirs[@]}
