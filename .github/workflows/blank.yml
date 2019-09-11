@@ -25,19 +25,16 @@ jobs:
         echo "Changed Components are  => $PAGER"
         export COMPONENT="NOTSET"
         unique_dirs=($(tr ' ' '\n' <<< "${PAGER[@]}" | sort -u | tr '\n' ' '))
-
-        echo "CHANGED DIRS ARE::::"
+        echo "CHANGED DIRECTORIES ARE..."
         for dir in ${unique_dirs[@]}
         do
           echo $dir        
           if [[ "$dir" == .* ]]; then del="$dir"; fi
         done
-        echo "Getting Unique Values:::"
 
         unique_dirs=("${unique_dirs[@]/$del}")
-        echo "Unique Values Are:::"
+        echo "UNIQUE HELM DIRECTORIES ..."
         echo ${unique_dirs[@]}
-
 
         for dir in ${unique_dirs[@]}
         do
@@ -48,11 +45,11 @@ jobs:
           echo "Initialize Helm and Upload Chart If Exists"
           helm init --client-only
           echo "Helm Adding Chart repo"
-          helm repo add charts https://charts.tmt.tools --username $TMT_CHARTS_USERNAME --password $TMT_CHARTS_PASSWORD
+          helm repo add charts https://charts.tmt.tools --username $TMT_CHARTS_USERNAME --password $TMT_CHARTS_PASSWORD || continue
           helm dep build
           helm package .
           FILENAME="$(find . \( -name "$COMPONENT_DIR*.tgz" \) -exec basename {} \;)"
           if [ "$FILENAME" == "" ]; then echo "No Chart Version Found!" && exit 1;  fi
           echo $FILENAME
-          curl --user $TMT_CHARTS_USERNAME:$TMT_CHARTS_PASSWORD --data-binary "@$FILENAME" https://charts.tmt.tools/api/charts
+          curl --user $TMT_CHARTS_USERNAME:$TMT_CHARTS_PASSWORD --data-binary "@$FILENAME" https://charts.tmt.tools/api/charts || continue
         done
