@@ -24,8 +24,16 @@ jobs:
         export PAGER=$(git diff-tree --no-commit-id --name-only -r HEAD)
         echo "Changed Components are  => $PAGER"
         export COMPONENT="NOTSET"
-        #for CHANGE in $PAGER; do ENV_DIR=${CHANGE%%/*}; done
         unique_dirs=($(tr ' ' '\n' <<< "${PAGER[@]}" | uniq | tr '\n' ' '))
+
+        echo "CHANGED DIRS ARE::::"
+        for dir in $unique_dirs
+        do
+          echo $dir        
+          if [ "$dir" == .* ]; then del=$dir; fi
+        done
+        unique_dirs=("${unique_dirs[@]/$del}")
+
 
         for dir in $unique_dirs
         do
