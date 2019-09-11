@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: platform-env-variables
+  namespace: {{ .Release.Namespace }}
+data:
+  GOOGLE_CLOUD_PROJECT: project
+  PUBSUB_EMULATOR_HOST: "{{ include "dome-preview.fullname" . }}-pubsub-emulator:{{ .Values.pubsubEmulator.service.port }}"

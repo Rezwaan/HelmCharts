@@ -1,0 +1,171 @@
+# Default values for dome-preview.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+dome-backend:
+  enabled: true
+  fullnameOverride: ""
+  global:
+    image:
+      repository: eu.gcr.io/dome-platform-development/lite-backend
+      tag: 1.1.281
+      pullPolicy: IfNotPresent
+    env:
+      secretName: platform-secrets
+      secretVersion: "0.1.3"
+      configMapName: platform-env-variables
+      configMapVersion: "0.1.0"
+    configName: platform-configs
+    configVersion: "0.1.1"
+    appEnv: preview
+  service:
+    type: ClusterIP
+    port: 80
+  istio:
+    enabled: true
+    gateway: istio-system/domepos-dev-gateway
+    hosts:
+    - api.domepos.dev
+  web:
+    replicaCount: 1
+    port: 4000
+    resources:
+      limits:
+        cpu: 1200m
+        memory: 4G
+      requests:
+        cpu: 800m
+        memory: 2G
+    hpa:
+      enabled: false
+    metrics: 
+      enabled: false
+    serviceMonitor: 
+      enabled: false
+    tolerations:
+    - key: "cloud.google.com/gke-preemptible"
+      operator: "Exists"
+      effect: "NoSchedule"
+  migrationJob:
+    preHook:
+      enabled: false
+    initCheck:
+      enabled: true
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "500m"
+      limits:
+        memory: "2Gi"
+        cpu: "1"
+    tolerations:
+    - key: "cloud.google.com/gke-preemptible"
+      operator: "Exists"
+      effect: "NoSchedule"
+  order-created-worker:
+    enabled: true
+    metrics:
+      enabled:  false
+    serviceMonitor:
+      enabled: false
+    tolerations:
+    - key: "cloud.google.com/gke-preemptible"
+      operator: "Exists"
+      effect: "NoSchedule"
+    metrics:
+      enabled: false
+    replicaCount: 1
+    command:
+      - /bin/sh
+      - -c
+      - bundle exec rails order_created_listener:run
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "500m"
+      limits:
+        memory: "2Gi"
+        cpu: "1"
+    hpa:
+      enabled: false
+  order-updated-worker:
+    enabled: true
+    metrics:
+      enabled:  false
+    serviceMonitor:
+      enabled: false
+    tolerations:
+    - key: "cloud.google.com/gke-preemptible"
+      operator: "Exists"
+      effect: "NoSchedule"
+    replicaCount: 1
+    metrics:
+      enabled: false
+    command:
+      - /bin/sh
+      - -c
+      - bundle exec rails order_updated_listener:run
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "500m"
+      limits:
+        memory: "2Gi"
+        cpu: "1"
+    hpa:
+      enabled: false
+
+  catch-all-sidekiq:
+    enabled: true
+    hpa:
+      enabled: false
+      external:
+        enabled: false
+
+pubsubEmulator:
+  enabled: true
+  image:
+    repository: eu.gcr.io/dome-platform-development/pubsub-emulator
+    tag: 1.0.1
+    pullPolicy: IfNotPresent
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "500m"
+    limits:
+      memory: "512Mi"
+      cpu: "1"
+  nodeSelector: {}
+  tolerations:
+  - key: "cloud.google.com/gke-preemptible"
+    operator: "Exists"
+    effect: "NoSchedule"
+  affinity: {}
+  service:
+    port: 8085
+  env:
+    configMapName: platform-env-variables
+
+redis:
+  enabled: true
+  cluster:
+    enabled: false
+  master:
+    tolerations:
+    - key: "cloud.google.com/gke-preemptible"
+      operator: "Exists"
+      effect: "NoSchedule"  
+  usePassword: false
+
+postgresql:
+  enabled: true
+  image:
+    repository: mdillon/postgis
+    tag: 11 
+  master:
+    tolerations:
+    - key: "cloud.google.com/gke-preemptible"
+      operator: "Exists"
+      effect: "NoSchedule"
+  postgresqlDatabase: platform
+  postgresqlPassword: secretpassword

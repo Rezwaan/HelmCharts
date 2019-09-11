@@ -1,0 +1,62 @@
+{{- if .Values.pubsubEmulator.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "dome-preview.fullname" . }}-pubsub-emulator
+  labels:
+    app.kubernetes.io/name: {{ include "dome-preview.name" . }}-pubsub-emulator
+    helm.sh/chart: {{ include "dome-preview.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "dome-preview.name" . }}-pubsub-emulator
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "dome-preview.name" . }}-pubsub-emulator
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}-pubsub-emulator
+          image: "{{ .Values.pubsubEmulator.image.repository }}:{{ .Values.pubsubEmulator.image.tag }}"
+          imagePullPolicy: {{ .Values.pubsubEmulator.image.pullPolicy }}
+          envFrom:
+          - configMapRef:
+              name: {{ .Values.pubsubEmulator.env.configMapName }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.pubsubEmulator.service.port }}
+              protocol: TCP
+          readinessProbe:
+            tcpSocket:
+              port: {{ .Values.pubsubEmulator.service.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: {{ .Values.pubsubEmulator.service.port }}
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "PUBSUB_EMULATOR_HOST=localhost:8085 /scripts/setup.sh"]
+          resources:
+            {{- toYaml .Values.pubsubEmulator.resources | nindent 12 }}
+      {{- with .Values.pubsubEmulator.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.pubsubEmulator.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.pubsubEmulator.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+{{- end }}

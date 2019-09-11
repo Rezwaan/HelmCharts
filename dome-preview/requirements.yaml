@@ -1,0 +1,16 @@
+dependencies:
+  - name: dome-backend
+    alias: dome-backend
+    version: 0.1.26
+    condition: dome-backend.enabled
+    repository: https://charts.tmt.tools
+  - name: redis
+    alias: redis
+    version: 7.1.1
+    condition: redis.enabled
+    repository: https://kubernetes-charts.storage.googleapis.com
+  - name: postgresql
+    alias: postgresql
+    version: 6.2.0
+    condition: postgresql.enabled
+    repository: https://kubernetes-charts.storage.googleapis.com
