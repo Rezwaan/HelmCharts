@@ -45,13 +45,13 @@ jobs:
           echo "Initialize Helm and Upload Chart If Exists"
           helm init --client-only
           echo "Helm Adding Chart repo"
-          helm repo add charts https://charts.tmt.tools --username $TMT_CHARTS_USERNAME --password $TMT_CHARTS_PASSWORD || continue
+          helm repo add charts https://charts.tmt.tools --username $TMT_CHARTS_USERNAME --password $TMT_CHARTS_PASSWORD || true
           helm dep build
           helm package .
           FILENAME="$(find . \( -name "$COMPONENT_DIR*.tgz" \) -exec basename {} \;)"
           if [ "$FILENAME" == "" ]; then echo "No Chart Version Found!" && exit 1;  fi
           echo $FILENAME
-          curl --user $TMT_CHARTS_USERNAME:$TMT_CHARTS_PASSWORD --data-binary "@$FILENAME" https://charts.tmt.tools/api/charts || continue
+          curl --user $TMT_CHARTS_USERNAME:$TMT_CHARTS_PASSWORD --data-binary "@$FILENAME" https://charts.tmt.tools/api/charts || true
           pwd
           cd ..
           pwd
