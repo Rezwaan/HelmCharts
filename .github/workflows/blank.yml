@@ -30,6 +30,8 @@ jobs:
           APP_ENV=production
         elif [ $BRANCH == "staging" ]; then
           APP_ENV=staging
+        elif [ $BRANCH == "junk-ci" ]; then
+          APP_ENV=staging
         fi
         
         GCLOUD_SERVICE_ACCOUNT=${APP_ENV^^}_GCLOUD_SERVICE_ACCOUNT
