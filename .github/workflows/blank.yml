@@ -5,7 +5,7 @@ on:
     branches:
       - master
       - staging
-      - actions-ci
+      - junk-ci
 
 jobs:
   publish:
