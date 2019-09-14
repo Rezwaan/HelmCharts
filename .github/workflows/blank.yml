@@ -22,6 +22,7 @@ jobs:
           BRANCH: ${{ github.event.ref }}
           STAGING_GCLOUD_SERVICE_ACCOUNT: ${{ secrets.STAGING_GCLOUD_SERVICE_ACCOUNT }}
           PRODUCTION_GCLOUD_SERVICE_ACCOUNT: ${{ secrets.PRODUCTION_GCLOUD_SERVICE_ACCOUNT }}
+          APP_ENVIRONMENT: dummy
       run: |
         BRANCH=${BRANCH#refs/heads/}
         echo $BRANCH
@@ -33,6 +34,7 @@ jobs:
         elif [ $BRANCH == "junk-ci" ]; then
           APP_ENV=staging
         fi
+        APP_ENVIRONMENT=APP_ENV
         
         # GCLOUD_SERVICE_ACCOUNT=${APP_ENV^^}_GCLOUD_SERVICE_ACCOUNT
         # echo ${!GCLOUD_SERVICE_ACCOUNT} > $HOME/gcloud-service-account.json
@@ -58,7 +60,7 @@ jobs:
     - name: Publish docker image release
       uses: themakersteam/tmt-gh-actions/publish-docker-image-release@master
       with:
-        image: eu.gcr.io/tmt-tools-$APP_ENV/flow-polling
+        image: eu.gcr.io/tmt-tools-${{ steps.build.env.APP_ENVIRONMENT }}/flow-polling
         major-version: ${{ steps.release.outputs.major-version }}
         minor-version: ${{ steps.release.outputs.minor-version }}
         patch-version: ${{ steps.release.outputs.patch-version }}
