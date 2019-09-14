@@ -34,22 +34,22 @@ jobs:
           APP_ENV=staging
         fi
         
-        GCLOUD_SERVICE_ACCOUNT=${APP_ENV^^}_GCLOUD_SERVICE_ACCOUNT
-        echo ${!GCLOUD_SERVICE_ACCOUNT} > $HOME/gcloud-service-account.json
-        gcloud auth activate-service-account --key-file $HOME/gcloud-service-account.json
+        # GCLOUD_SERVICE_ACCOUNT=${APP_ENV^^}_GCLOUD_SERVICE_ACCOUNT
+        # echo ${!GCLOUD_SERVICE_ACCOUNT} > $HOME/gcloud-service-account.json
+        # gcloud auth activate-service-account --key-file $HOME/gcloud-service-account.json
 
-        PROJECT=tmt-tools-$APP_ENV
-        echo $PROJECT
+        # PROJECT=tmt-tools-$APP_ENV
+        # echo $PROJECT
 
-        IMAGE=eu.gcr.io/$PROJECT/flow-polling
-        echo $IMAGE
+        # IMAGE=eu.gcr.io/$PROJECT/flow-polling
+        # echo $IMAGE
 
-        docker pull $IMAGE:1 || true
+        # docker pull $IMAGE:1 || true
 
-        docker build \
-          --cache-from $IMAGE:1 \
-          --tag $IMAGE \
-          .
+        # docker build \
+        #   --cache-from $IMAGE:1 \
+        #   --tag $IMAGE \
+        #   .
         
     - name: Generate release version
       uses: themakersteam/tmt-gh-actions/generate-release-version@master
