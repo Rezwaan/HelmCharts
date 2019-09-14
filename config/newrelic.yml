@@ -1,0 +1,18 @@
+common: &default_settings
+  license_key:  <%= Rails.application.secrets.newrelic[:license_key] %>
+  app_name: <%= Rails.application.secrets.newrelic[:app_name] %>
+  monitor_mode:  <%= Rails.application.secrets.newrelic[:monitor_mode] || false %>
+  log_level: <%= Rails.application.secrets.newrelic[:log_level] %>
+
+development:
+  <<: *default_settings
+
+test:
+  <<: *default_settings
+  monitor_mode: false
+
+staging:
+  <<: *default_settings
+
+production:
+  <<: *default_settings

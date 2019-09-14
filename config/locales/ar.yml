@@ -1,0 +1,118 @@
+
+
+ar:
+  reject_reasons:
+    driver_unavailable: 'No driver available'
+    kitchen_busy: 'Kitchen is busy'
+    item_not_available: "Item isn't available"
+  currencies:
+    sar: 'ر.س'
+    bhd: 'دينار'
+    pkr: 'روپیہ'
+    egp: 'ج.م'
+    kwd: 'د.ك'
+    aed: 'د.إ'
+    iqd: 'ع.د'
+    qar: 'ر.ق'
+    jod: 'د.ا'
+    lbp: 'ل.ل.'
+  order_statuses:
+    received_successfully: 'Received Successfully'
+    accepted_by_store: 'Accepted by Store'
+    rejected_by_store: 'Rejected by Store'
+    cancelled_by_store: 'Cancelled by Store'
+    out_for_delivery: 'Out for Delivery'
+    cancelled_by_platform: 'Cancelled by Platform'
+    cancelled_after_pickup_by_platform: 'Cancelled after Picked Up'
+  order_states:
+    processing: 'Processing'
+    successful: 'Successful'
+    failed: 'Failed'
+  notifications:
+    firebase:
+      messages:
+        order_updated:
+          title: 'Order is received by store!'
+          body: 'Order is received by store!'
+  integrations:
+    pizzagest:
+      dough: العجينة
+      topping: الإضافات
+      sauce: الصلصلة
+      remove_header: "بدون"
+      remove_topping: "بدون %{topping}"
+  ticket_types:
+    content: 'يحتوى'
+    Root:
+      title: أصل
+    technical:
+      title: 'مشكلات تقنية'
+      content: 'مشكلات تقنية'
+    account:
+      title: "الحساب"
+      content: "الحساب"
+    application:
+      title: "البرنامج"
+      content: "البرنامج"
+    other_technical_issue:
+      title: "خيار آخر"
+      content: "خيار آخر"
+    financial_issue:
+      title: "مشكلات مالية"
+      content: "مشكلات مالية"
+    order_amount:
+      title: "قيمة الطلبات"
+      content: "قيمة الطلبات"
+    payment:
+      title: "الدفعات المالية"
+      content: "الدفعات المالية"
+    other_financial_issue:
+      title: "خيار آخر"
+      content: "خيار آخر"
+    menu_issue:
+      title: "مشكلات القائمة"
+      content: "مشكلات القائمة"
+    item:
+      title: "السلع"
+      content: "السلع"
+    offer:
+      title: "العروض"
+      content: "العروض"
+    other_menu_issue:
+      title: "خيار آخر"
+      content: "خيار آخر"
+    other_issue:
+      title: "مشكلات اخرى"
+      content: "مشكلات اخرى"
+    other:
+      title: "مشاكل اخرى"
+      content: "مشاكل اخرى"
+    api:
+      error:
+        action_param_is_required: "المعلمة المفقودة: الإجراء"
+        type_not_present: "معلمة مفقودة أو غير صالحة: النوع"
+        order_not_present: "الطلب المرتبط بالتذكرة غير موجود"
+        action_is_invalid: "الإجراء غير صالح"
+        can_not_create_this_type_of_ticket: "لا يمكن إنشاء هذا النوع من التذاكر"
+        ticket_not_present: "تذكرة غير موجودة"
+        duplicated_ticket: "تم استلام طلبك بنجاح. سيقوم الفريق المختص بالتواصل معك قريبا."
+      success:
+        your_ticket_was_successfully_submitted: "تم إرسال التذكرة بنجاح"
+  orders:
+    note_types:
+      received_successfully: 'Received Successfully'
+      accepted_by_store: 'Accepted by Store'
+      out_for_delivery: 'Out for Delivery'
+      cancelled_by_store: 'Cancelled by Store'
+      cancelled_by_platform: 'Cancelled by Platform'
+      cancelled_after_pickup_by_platform: 'Cancelled after Pickup'
+      rejected_by_store: 'Rejected by Store'
+      agent: 'Agent'
+  app_versions:
+    title: 'تحديث جديد متاح'
+    body: 'تحديث جديد متاح للتحميل, يرجى تحميل أحدث نسخة من التطبيق'
+    actions:
+      update: 'تحديث'
+      skip: 'تخطى'
+    messages:
+      home_alert: 'نسخة جديدة متاحة'

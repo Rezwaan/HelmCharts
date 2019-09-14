@@ -1,0 +1,4 @@
+:queues:
+  - [default, 2]
+  - [integration, 1]
+  

@@ -1,0 +1,56 @@
+{
+  "name": "Hamburgini",
+  "bundle_sets": {},
+  "bundles": {},
+  "categories": {
+    "12345": {
+      "id": 12345,
+      "name": "Sauces",
+      "name_ar": "الصوصات",
+      "product_ids": {
+        "123": 123,
+        "456": 456
+      },
+      "weight": "1"
+    }
+  },
+  "products": {
+    "123": {
+      "bundle_ids": {
+        "789": 789
+      },
+      "description": "product 123",
+      "description_ar": "product 123",
+      "id": 123,
+      "images": {
+        "ca649410-9650-11e9-be56-e93143edf438": "https://storage.googleapis.com/dashboard-menu/e53c2172-8b3e-4316-9116-f1f5bd15d43a/ca649410-9650-11e9-be56-e93143edf438.jpeg"
+      },
+      "name": "product 123",
+      "name_ar": "product 123",
+      "reference_name": "product-123"
+    },
+    "456": {
+      "bundle_ids": {
+        "789": 789
+      },
+      "description": "product 567",
+      "description_ar": "product 567",
+      "disabled": "true",
+      "id": 567,
+      "images": {
+        "ca649410-9650-11e9-be56-e93143edf438": "https://storage.googleapis.com/dashboard-menu/e53c2172-8b3e-4316-9116-f1f5bd15d43a/ca649410-9650-11e9-be56-e93143edf438.jpeg"
+      },
+      "name": "product 567",
+      "name_ar": "product 567",
+      "reference_name": "product-567"
+    }
+  },
+  "item_bundles": {},
+  "item_sets": {},
+  "items": {},
+  "customization_ingredients": {},
+  "customization_ingredient_items": {},
+  "customization_options": {},
+  "customization_option_items": {},
+  "sets": {}
+}

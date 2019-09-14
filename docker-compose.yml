@@ -1,0 +1,96 @@
+version: "3.4"
+
+# DRY by YAML Anchors
+# Reference: https://medium.com/@kinghuang/docker-compose-anchors-aliases-extensions-a1e4105d70bd.
+x-: &app_base
+  # Update the image name whenever you update Dockerfile.
+  image: dome-lite-backend:1.190908.1
+  environment:
+    RAILS_ENV: "${RAILS_ENV:-development}"
+    PUBSUB_EMULATOR_HOST: "pubsub-emulator:8085"
+    GOOGLE_CLOUD_PROJECT: "project"
+  volumes:
+    - ".:/app:cached"
+    - "/app/tmp"
+  networks:
+    - dome-lite
+  depends_on:
+    - postgres
+    - redis
+
+services:
+  app:
+    <<: *app_base
+    build:
+      context: .
+      args:
+        - APP_ENV=development
+        - APP_RELEASE=develop
+        - BUNDLE_RUBYGEMS__PKG__GITHUB__COM=$BUNDLE_RUBYGEMS__PKG__GITHUB__COM
+        - BUNDLE_ENTERPRISE__CONTRIBSYS__COM=$BUNDLE_ENTERPRISE__CONTRIBSYS__COM
+      # This help speed CI builds
+      cache_from:
+        - eu.gcr.io/dome-platform-production/lite-backend:latest
+    command: ["sh", "-c", "rm tmp/pids/server.pid 2> /dev/null; rails server -b 0.0.0.0"]
+    stop_signal: SIGINT
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - "3000:3000"
+
+  sidekiq:
+    <<: *app_base
+    command: ["sidekiq"]
+    depends_on:
+      - app
+
+  order-created-listener:
+    <<: *app_base
+    command: ["rails", "order_created_listener:run"]
+    depends_on:
+      - app
+      - pubsub-emulator
+
+  order-updated-listener:
+    <<: *app_base
+    command: ["rails", "order_updated_listener:run"]
+    depends_on:
+      - app
+      - pubsub-emulator
+
+  postgres:
+    image: mdillon/postgis:11
+    volumes:
+      - "postgres_data:/var/lib/postgresql"
+    environment:
+      POSTGRES_PASSWORD: mysecret
+    networks:
+      - dome-lite
+    ports:
+      - "5432"
+
+  redis:
+    image: redis
+    networks:
+      - dome-lite
+    ports:
+      - "6379"
+
+  pubsub-emulator:
+    image: eu.gcr.io/tmt-public-docker-images/pubsub-emulator:1.0.0
+    stop_signal: SIGINT
+    environment:
+      PUBSUB_EMULATOR_HOST: "pubsub-emulator:8085"
+    volumes:
+      - "./script/pubsub-emulator:/scripts"
+    networks:
+      - dome-lite
+    ports:
+      - "8085:8085"
+
+volumes:
+  postgres_data:
+
+networks:
+  dome-lite:

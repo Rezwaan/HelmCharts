@@ -1,0 +1,13 @@
+{
+  "eventId": "0a23631d-5f75-4940-a416-a1c4061458c9",
+  "eventName": "PlatformOrderUpdated",
+  "eventTime": 1559561568,
+  "payload": {
+    "backend_id": "3",
+    "order_key": "a6927f36-4a68-4024-8173-034a194cade1",
+    "platform_id": 1,
+    "status": "canceled",
+    "rejection_reason_id": 0,
+    "rejection_reason_text": ""
+  }
+}

@@ -1,0 +1,44 @@
+cancel_expired_orders:
+  cron: "*/1 * * * *"
+  class: "Orders::Workers::ExpiredOrderChecker"
+  queue: default
+
+reopen_stores:
+  cron: "*/1 * * * *"
+  class: "Stores::Workers::ReopenStoresWorker"
+  queue: default
+
+integration_status_polling:
+  cron: "*/1 * * * *"
+  class: "Integrations::Workers::OrderStatusPolling"
+  queue: default
+
+integration_out_of_stock_items_polling:
+  cron: "*/2 * * * *"
+  class: "Integrations::Workers::OutOfStockItemsPolling"
+  queue: default
+
+integrations_store_status_polling:
+  cron: "*/10 * * * *"
+  class: "Integrations::Workers::StoreStatusPolling"
+  queue: default
+
+remove_expired_store_items_availabilities:
+  cron: "*/5 * * * *"
+  class: "StoreItemAvailabilities::Workers::RemoveExpiredStoreItemsWorker"
+  queue: default
+
+integration_daily_working_hours_syncer:
+  cron: "0 5 * * *"
+  class: "Integrations::Workers::SyncWorkingHours"
+  queue: default
+
+sync_kudu_orders:
+  cron: "* * * * *"
+  class: "Rush::Workers::KuduOrderSyncer"
+  queue: default
+
+update_store_availability:
+  cron: "*/3 * * * *"
+  class: "Stores::Workers::UpdateStoreAvailability"
+  queue: default

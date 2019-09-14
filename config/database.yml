@@ -1,0 +1,28 @@
+default: &default
+  adapter: postgis
+  pool: <%= Rails.application.secrets.database[:pool] %>
+  timeout: 5000
+  host: <%= ENV["DATABASE_HOST"] || Rails.application.secrets.database[:host] %>
+  database: <%= Rails.application.secrets.database[:database] %>
+  port: <%= Rails.application.secrets.database[:port] %>
+  username: <%= Rails.application.secrets.database[:username] %>
+  password: <%= Rails.application.secrets.database[:password] %>
+  encoding: unicode
+  schema_search_path: "public,postgis"
+  prepared_statements: false
+
+development:
+  <<: *default
+  script_dir: /opt/local/share/contrib/postgis-1.5
+  database: app_development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  script_dir: /opt/local/share/contrib/postgis-1.5
+  database: app_test
+
+production:
+  <<: *default

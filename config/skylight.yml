@@ -1,0 +1,7 @@
+production:
+  env: <%= ENV["APP_ENV"] || "undefined" %>
+ignored_endpoints:
+  - StatusesController#liveness
+  - StatusesController#readiness
+  - StatusesController#status
+enable_sidekiq: true

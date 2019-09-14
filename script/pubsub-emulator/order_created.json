@@ -1,0 +1,123 @@
+{
+  "eventId": "0a23631d-5f75-4940-a416-a1c406145vv7",
+  "eventName": "PlatformOrderCreated",
+  "eventTime": 1559561568,
+  "payload": {
+    "backend_id": 1,
+    "order_key": "a6927f36-4a68-4024-8173-034a194cade1",
+    "customer_notes": null,
+    "amount": "26.0",
+    "discount": 0,
+    "delivery_fee": 15.0,
+    "collect_at_customer": "41.0",
+    "collect_at_pickup": "26.0",
+    "status": "driver_assigned",
+    "offer_applied": false,
+    "coupon": null,
+    "returnable": null,
+    "return_code": null,
+    "returned_status": null,
+    "payment_type": "cash",
+    "order_type": "food",
+    "currency": "SAR",
+    "customer": {
+      "id": 287,
+      "name": "Payfort",
+      "phone": {
+        "country_code": "966",
+        "number": "597204971"
+      },
+      "address": {
+        "id": 4697,
+        "latitude": 24.81732883,
+        "longitude": 46.64173052
+      }
+    },
+    "line_items": [{
+      "backend_id": 4286,
+      "quantity": 1.0,
+      "name": "Pepperoni Manoush",
+      "price": 11.0,
+      "image": "https://hsaa.hsobjects.com/h/menuitems/images/000/046/251/ff79ecb459993bc46091a942f6bfbce1-size650.jpg",
+      "discount": 0,
+      "modifiers": [{
+        "group": "Dough",
+        "name": "Brown dough",
+        "quantity": 1,
+        "price": "1.0",
+        "translations_attributes": [{
+          "locale": "en",
+          "group": "Dough",
+          "name": "Brown dough"
+        }, {
+          "locale": "ar",
+          "group": "نوع العجين",
+          "name": "عجين بر"
+        }]
+      }],
+      "notes": "nDough:n Brown dough",
+      "translations_attributes": [{
+        "backend_id": 4286,
+        "locale": "en",
+        "name": "Pepperoni Manoush"
+      }, {
+        "backend_id": 4286,
+        "locale": "ar",
+        "name": "منؤوش بيبروني"
+      }]
+    }, {
+      "backend_id": 4285,
+      "quantity": 1.0,
+      "name": "Muhammara Chicken Manaosh with Cheese ",
+      "price": 15.0,
+      "image": "https://hsaa.hsobjects.com/h/menuitems/images/000/046/252/cce23dd2a80785c2e335cb1e67a20cc2-size650.jpg",
+      "discount": 0,
+      "modifiers": [{
+        "group": "Dough",
+        "name": "Regular dough",
+        "quantity": 1,
+        "price": "0.0",
+        "translations_attributes": [{
+          "locale": "en",
+          "group": "Dough",
+          "name": "Regular dough"
+        }, {
+          "locale": "ar",
+          "group": "نوع العجين",
+          "name": "عجين عادي"
+        }]
+      }],
+      "notes": "nDough:n Regular dough",
+      "translations_attributes": [{
+        "backend_id": 4285,
+        "locale": "en",
+        "name": "Muhammara Chicken Manaosh with Cheese "
+      }, {
+        "backend_id": 4285,
+        "locale": "ar",
+        "name": "منؤوش محمرة بالدجاج و الجبنة"
+      }]
+    }],
+    "store": {
+      "id": 1,
+      "name_en": "Bash Manou",
+      "name_ar": "Bash Manou",
+      "address": {
+        "latitude": 24.818389,
+        "longitude": 46.642189
+      },
+      "brand": {
+        "id": 1,
+        "name_en": "Bash Manou",
+        "name_ar": "باش منؤوش",
+        "logo": "https://swyft-staging.storage.googleapis.com/brands/brands/logos/000/000/416/main/8df89702ab9c89069113ac7e353695a8-thumb.jpg?1556119495"
+      }
+    },
+    "platform": {
+      "backend_id": 1,
+      "name_en": "Swyft",
+      "name_ar": "سويفت",
+      "logo": "https://storage.googleapis.com/swyft-production/logos/swyft-logo.jpg"
+    }
+  }
+}

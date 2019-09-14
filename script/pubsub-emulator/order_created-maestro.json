@@ -1,0 +1,107 @@
+{
+  "eventId": "0a23631d-5f75-4940-a416-a1c406145vv7",
+  "eventName": "PlatformOrderCreated",
+  "eventTime": 1559561568,
+  "payload": {
+    "backend_id": 168,
+    "order_key": "a6927f36-4a68-4024-8173-034a194cade1",
+    "customer_notes": null,
+    "amount": "12.0",
+    "discount": 0,
+    "delivery_fee": 15.0,
+    "collect_at_customer": "27.0",
+    "collect_at_pickup": "12.0",
+    "status": "driver_assigned",
+    "offer_applied": false,
+    "coupon": null,
+    "returnable": null,
+    "return_code": null,
+    "returned_status": null,
+    "payment_type": "cash",
+    "order_type": "food",
+    "currency": "SAR",
+    "customer": {
+      "id": 287,
+      "name": "Payfort",
+      "phone": {
+        "country_code": "966",
+        "number": "597204971"
+      },
+      "address": {
+        "id": 4697,
+        "latitude": 24.81732883,
+        "longitude": 46.64173052
+      }
+    },
+    "line_items": [{
+      "backend_id": 4,
+      "quantity": 1.0,
+      "name": "Cheesy Wedges",
+      "price": 12.0,
+      "image": null,
+      "discount": 0,
+      "modifiers": [],
+      "notes": "",
+      "translations_attributes": [{
+        "backend_id": 4,
+        "locale": "en",
+        "name": "Cheesy Wedges"
+      }, {
+        "backend_id": 4,
+        "locale": "ar",
+        "name": "Cheesy Wedges"
+      }],
+      "item_detail":  {
+        "bundle_id": 57,
+        "product_id": 57,
+        "item_bundles": [
+          {
+            "item": {
+              "item_id": 57,
+              "customization_options": [
+                {
+                  "customization_option_id": 54,
+                  "customization_option_item_ids": [
+                    113
+                  ]
+                },
+                {
+                  "customization_option_id": 55,
+                  "customization_option_item_ids": []
+                },
+                {
+                  "customization_option_id": 56,
+                  "customization_option_item_ids": []
+                }
+              ],
+              "customization_ingredients": []
+            },
+            "item_bundle_id": 57
+          }
+        ],
+        "catalog_version_id": null
+      }
+    }],
+    "store": {
+      "backend_id": 4545656,
+      "name_en": "Maestro Nakheel",
+      "name_ar": "Maestro Nakheel",
+      "address": {
+        "latitude": 24.746356,
+        "longitude": 46.618775
+      },
+      "brand": {
+        "backend_id": 45,
+        "name_en": "Maestro",
+        "name_ar": "Maestro",
+        "logo": "https://swyft-production.storage.googleapis.com/brands/brands/logos/000/000/045/main/m.png?1552252082"
+      }
+    },
+    "platform": {
+      "backend_id": 1,
+      "name_en": "Swyft",
+      "name_ar": "سويفت",
+      "logo": "https://storage.googleapis.com/swyft-production/logos/swyft-logo.jpg"
+    }
+  }
+}

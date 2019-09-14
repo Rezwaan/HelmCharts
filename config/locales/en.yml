@@ -1,0 +1,149 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  reject_reasons:
+    driver_unavailable: 'No driver available'
+    kitchen_busy: 'Kitchen is busy'
+    item_not_available: "Item isn't available"
+  currencies:
+    sar: 'SAR'
+    bhd: 'BHD'
+    pkr: 'PKR'
+    egp: 'EGP'
+    kwd: 'KWD'
+    aed: 'AED'
+    iqd: 'IQD'
+    qar: 'QAR'
+    jod: 'JOD'
+    lbp: 'LBP'
+  order_statuses:
+    received_successfully: 'Received Successfully'
+    accepted_by_store: 'Accepted by Store'
+    rejected_by_store: 'Rejected by Store'
+    cancelled_by_store: 'Cancelled by Store'
+    out_for_delivery: 'Out for Delivery'
+    cancelled_by_platform: 'Cancelled by Platform'
+    cancelled_after_pickup_by_platform: 'Cancelled after Picked Up'
+  order_states:
+    processing: 'Processing'
+    successful: 'Successful'
+    failed: 'Failed'
+  notifications:
+    firebase:
+      messages:
+        order_updated:
+          title: 'Order is received by store!'
+          body: 'Order is received by store!'
+  integrations:
+    pizzagest:
+      dough: Dough
+      topping: Topping
+      sauce: Sauce
+      remove_header: "Remove"
+      remove_topping: "Remove %{topping}"
+
+  ticket_types:
+    content: 'Content'
+    Root:
+      title: Root
+    technical:
+      title: "Technical Issues"
+      content: "Technical Issues"
+    account:
+      title: "Account"
+      content: "Account"
+    application:
+      title: "Application"
+      content: "Application"
+    other_technical_issue:
+      title: "Other Technical Issues"
+      content: "Other Technical Issues"
+    financial_issue:
+      title: "Financial Issues"
+      content: "Financial Issues"
+    order_amount:
+      title: "Order Amount"
+      content: "Order Amount"
+    payment:
+      title: "Payment"
+      content: "Payment"
+    other_financial_issue:
+      title: "Other Financial Issues"
+      content: "Other Financial Issues"
+    menu_issue:
+      title: "Menu Issues"
+      content: "Menu Issues"
+    item:
+      title: "Items"
+      content: "Items"
+    offer:
+      title: "Offers"
+      content: "Offers"
+    other_menu_issue:
+      title: "Other Menu Issues"
+      content: "Other Menu Issues"
+    other_issue:
+      title: "Other Issues"
+      content: "Other Issues"
+    other:
+      title: "Others"
+      content: "Others"
+  api:
+    error:
+      action_param_is_required: "missing parameter: action"
+      type_not_present: "missing or invalid parameter: type"
+      order_not_present: "the order linked to the ticket doesn't exist"
+      action_is_invalid: "action is invalid"
+      can_not_create_this_type_of_ticket: "can not create this type of ticket"
+      ticket_not_present: "ticket not present"
+      duplicated_ticket: "Your ticket is already submitted. it's under process will contact you soon."
+    success:
+      your_ticket_was_successfully_submitted: "your ticket was successfully submitted"
+  orders:
+    note_types:
+      received_successfully: 'Received Successfully'
+      accepted_by_store: 'Accepted by Store'
+      out_for_delivery: 'Out for Delivery'
+      cancelled_by_store: 'Cancelled by Store'
+      cancelled_by_platform: 'Cancelled by Platform'
+      cancelled_after_pickup_by_platform: 'Cancelled after Pickup'
+      rejected_by_store: 'Rejected by Store'
+      agent: 'Agent'
+  app_versions:
+    title: 'New Update Available'
+    body: 'We have a new update available to download. Please download the latest app'
+    actions:
+      update: 'Update'
+      skip: 'Skip'
+    messages:
+      home_alert: 'New version is available'

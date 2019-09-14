@@ -1,0 +1,443 @@
+{
+  "eventId": "e534da3b-f91b-45c0-b696-15ad45cf8698",
+  "eventName": "PlatformOrderCreated",
+  "eventTime": 1561803168,
+  "payload": {
+    "backend_id": 108099979,
+    "order_key": "39c648be-df6f-4f69-9278-bf9d68f85d99",
+    "customer_notes": null,
+    "amount": "73.0",
+    "discount": 0,
+    "delivery_fee": 12,
+    "collect_at_customer": "85.0",
+    "collect_at_pickup": 0,
+    "status": "driver_assigned",
+    "offer_applied": false,
+    "coupon": null,
+    "returnable": null,
+    "return_code": null,
+    "returned_status": null,
+    "payment_type": "prepaid",
+    "order_type": "food",
+    "currency": "SAR",
+    "customer": {
+      "id": 28,
+      "name": "hossein",
+      "phone": {
+        "country_code": "966",
+        "number": "544326188"
+      },
+      "address": {
+        "id": 5606,
+        "latitude": 26.45911195,
+        "longitude": 50.082625
+      }
+    },
+    "line_items": [
+      {
+        "backend_id": 4990,
+        "quantity": 1,
+        "name": "Double Junior Cheese Cake Sundae",
+        "price": 25,
+        "image": "http://ws.jtcl.com.sa:8018/hs_images/image_647.jpg",
+        "discount": 0,
+        "modifiers": [
+          {
+            "group": "Flavours",
+            "name": "Caramel Turtle (Sugar Free)",
+            "quantity": 1,
+            "price": "0.0",
+            "translations_attributes": [
+              {
+                "locale": "en",
+                "group": "Flavours",
+                "name": "Caramel Turtle (Sugar Free)"
+              },
+              {
+                "locale": "ar",
+                "group": "Flavours",
+                "name": "كراميل تورتل"
+              }
+            ]
+          },
+          {
+            "group": "Flavours",
+            "name": "Strawberry",
+            "quantity": 1,
+            "price": "0.0",
+            "translations_attributes": [
+              {
+                "locale": "en",
+                "group": "Flavours",
+                "name": "Strawberry"
+              },
+              {
+                "locale": "ar",
+                "group": "Flavours",
+                "name": "فراولة"
+              }
+            ]
+          },
+          {
+            "group": "Toppings",
+            "name": "TRIPPLE BERRY TOPPING",
+            "quantity": 1,
+            "price": "0.0",
+            "translations_attributes": [
+              {
+                "locale": "en",
+                "group": "Toppings",
+                "name": "TRIPPLE BERRY TOPPING"
+              },
+              {
+                "locale": "ar",
+                "group": "Toppings",
+                "name": "تربل بري "
+              }
+            ]
+          },
+          {
+            "group": "Toppings",
+            "name": "REAL CREAM TOPPING",
+            "quantity": 1,
+            "price": "0.0",
+            "translations_attributes": [
+              {
+                "locale": "en",
+                "group": "Toppings",
+                "name": "REAL CREAM TOPPING"
+              },
+              {
+                "locale": "ar",
+                "group": "Toppings",
+                "name": "كريمة "
+              }
+            ]
+          }
+        ],
+        "notes": "\nFlavours:\n Caramel Turtle (Sugar Free)\n Strawberry\n\nToppings:\n TRIPPLE BERRY TOPPING\n REAL CREAM TOPPING",
+        "translations_attributes": [
+          {
+            "backend_id": 4990,
+            "locale": "en",
+            "name": "Double Junior Cheese Cake Sundae"
+          },
+          {
+            "backend_id": 4990,
+            "locale": "ar",
+            "name": "تشيز كيك مغرفة الأطفال المزدوجة"
+          }
+        ],
+        "item_detail": {
+          "product_id": "3246",
+          "bundle_id": "3246",
+          "item_bundles": [
+            {
+              "item": {
+                "item_id": "3246",
+                "customization_options": [
+                  {
+                    "customization_option_id": "3247",
+                    "customization_option_item_ids": [
+                      "3610",
+                      "3613"
+                    ]
+                  },
+                  {
+                    "customization_option_id": "3248",
+                    "customization_option_item_ids": [
+                      "3618",
+                      "3619"
+                    ]
+                  }
+                ],
+                "customization_ingredients": []
+              },
+              "item_bundle_id": "3246"
+            }
+          ],
+          "catalog_version_id": null
+        }
+      },
+      {
+        "backend_id": 4989,
+        "quantity": 1,
+        "name": "Junior Scoop Triple Cup",
+        "price": 23,
+        "image": "http://ws.jtcl.com.sa:8018/hs_images/image_003.jpg",
+        "discount": 0,
+        "modifiers": [
+          {
+            "group": "Flavours",
+            "name": "World Class Chocolate",
+            "quantity": 1,
+            "price": "0.0",
+            "translations_attributes": [
+              {
+                "locale": "en",
+                "group": "Flavours",
+                "name": "World Class Chocolate"
+              },
+              {
+                "locale": "ar",
+                "group": "Flavours",
+                "name": "ورلد كلاس شكولاته"
+              }
+            ]
+          },
+          {
+            "group": "Flavours",
+            "name": "Jamoca",
+            "quantity": 1,
+            "price": "0.0",
+            "translations_attributes": [
+              {
+                "locale": "en",
+                "group": "Flavours",
+                "name": "Jamoca"
+              },
+              {
+                "locale": "ar",
+                "group": "Flavours",
+                "name": "جاموكا"
+              }
+            ]
+          },
+          {
+            "group": "Flavours",
+            "name": "Pistachio Almond",
+            "quantity": 1,
+            "price": "0.0",
+            "translations_attributes": [
+              {
+                "locale": "en",
+                "group": "Flavours",
+                "name": "Pistachio Almond"
+              },
+              {
+                "locale": "ar",
+                "group": "Flavours",
+                "name": "بستاشيو ألموند"
+              }
+            ]
+          }
+        ],
+        "notes": "\nFlavours:\n World Class Chocolate\n Jamoca\n Pistachio Almond",
+        "translations_attributes": [
+          {
+            "backend_id": 4989,
+            "locale": "en",
+            "name": "Junior Scoop Triple Cup"
+          },
+          {
+            "backend_id": 4989,
+            "locale": "ar",
+            "name": "ثلاث مغارف اطفال كوب"
+          }
+        ],
+        "item_detail": {
+          "product_id": "3228",
+          "bundle_id": "3228",
+          "item_bundles": [
+            {
+              "item": {
+                "item_id": "3228",
+                "customization_options": [
+                  {
+                    "customization_option_id": "3229",
+                    "customization_option_item_ids": [
+                      "3433",
+                      "3435",
+                      "3438"
+                    ]
+                  },
+                  {
+                    "customization_option_id": "3230",
+                    "customization_option_item_ids": []
+                  }
+                ],
+                "customization_ingredients": []
+              },
+              "item_bundle_id": "3228"
+            }
+          ],
+          "catalog_version_id": null
+        }
+      },
+      {
+        "backend_id": 4988,
+        "quantity": 1,
+        "name": "Junior Scoop Double Cup",
+        "price": 16,
+        "image": "http://ws.jtcl.com.sa:8018/hs_images/image_002.jpg",
+        "discount": 0,
+        "modifiers": [
+          {
+            "group": "Flavours",
+            "name": "Cotton Candy",
+            "quantity": 1,
+            "price": "0.0",
+            "translations_attributes": [
+              {
+                "locale": "en",
+                "group": "Flavours",
+                "name": "Cotton Candy"
+              },
+              {
+                "locale": "ar",
+                "group": "Flavours",
+                "name": "كوتن كاندي"
+              }
+            ]
+          },
+          {
+            "group": "Flavours",
+            "name": "Pralines N Cream (Toffe with Almond)",
+            "quantity": 1,
+            "price": "0.0",
+            "translations_attributes": [
+              {
+                "locale": "en",
+                "group": "Flavours",
+                "name": "Pralines N Cream (Toffe with Almond)"
+              },
+              {
+                "locale": "ar",
+                "group": "Flavours",
+                "name": "برالينز ان كريم"
+              }
+            ]
+          }
+        ],
+        "notes": "\nFlavours:\n Cotton Candy\n Pralines N Cream (Toffe with Almond)",
+        "translations_attributes": [
+          {
+            "backend_id": 4988,
+            "locale": "en",
+            "name": "Junior Scoop Double Cup"
+          },
+          {
+            "backend_id": 4988,
+            "locale": "ar",
+            "name": "مغرفتين اطفال كوب"
+          }
+        ],
+        "item_detail": {
+          "product_id": "3225",
+          "bundle_id": "3225",
+          "item_bundles": [
+            {
+              "item": {
+                "item_id": "3225",
+                "customization_options": [
+                  {
+                    "customization_option_id": "3226",
+                    "customization_option_item_ids": [
+                      "3406",
+                      "3409"
+                    ]
+                  },
+                  {
+                    "customization_option_id": "3227",
+                    "customization_option_item_ids": []
+                  }
+                ],
+                "customization_ingredients": []
+              },
+              "item_bundle_id": "3225"
+            }
+          ],
+          "catalog_version_id": null
+        }
+      },
+      {
+        "backend_id": 4987,
+        "quantity": 1,
+        "name": "Junior Scoop Single Cup",
+        "price": 9,
+        "image": "http://ws.jtcl.com.sa:8018/hs_images/image_001.jpg",
+        "discount": 0,
+        "modifiers": [
+          {
+            "group": "Flavours",
+            "name": "Pralines N Cream (Toffe with Almond)",
+            "quantity": 1,
+            "price": "0.0",
+            "translations_attributes": [
+              {
+                "locale": "en",
+                "group": "Flavours",
+                "name": "Pralines N Cream (Toffe with Almond)"
+              },
+              {
+                "locale": "ar",
+                "group": "Flavours",
+                "name": "برالينز ان كريم"
+              }
+            ]
+          }
+        ],
+        "notes": "\nFlavours:\n Pralines N Cream (Toffe with Almond)",
+        "translations_attributes": [
+          {
+            "backend_id": 4987,
+            "locale": "en",
+            "name": "Junior Scoop Single Cup"
+          },
+          {
+            "backend_id": 4987,
+            "locale": "ar",
+            "name": "مغرفتين اطفال كوب"
+          }
+        ],
+        "item_detail": {
+          "product_id": "3222",
+          "bundle_id": "3222",
+          "item_bundles": [
+            {
+              "item": {
+                "item_id": "3222",
+                "customization_options": [
+                  {
+                    "customization_option_id": "3223",
+                    "customization_option_item_ids": [
+                      "3381"
+                    ]
+                  },
+                  {
+                    "customization_option_id": "3224",
+                    "customization_option_item_ids": []
+                  }
+                ],
+                "customization_ingredients": []
+              },
+              "item_bundle_id": "3222"
+            }
+          ],
+          "catalog_version_id": null
+        }
+      }
+    ],
+    "store": {
+      "backend_id": 37466,
+      "name_en": "Baskin Robbins",
+      "name_ar": "باسكن روبنز",
+      "address": {
+        "latitude": 26.45934899,
+        "longitude": 50.09020619
+      },
+      "brand": {
+        "backend_id": 571,
+        "name_en": "Baskin Robbins",
+        "name_ar": "باسكن روبنز",
+        "logo": "https://swyft-staging.storage.googleapis.com/brands/brands/logos/000/000/571/main/5232042bbd35bfc4401a9cefec9a97b3-thumb.png?1556189898"
+      }
+    },
+    "platform": {
+      "backend_id": 1,
+      "name_en": "Swyft",
+      "name_ar": "سويفت",
+      "logo": "https://storage.googleapis.com/swyft-production/logos/swyft-logo.jpg"
+    }
+  }
+}
