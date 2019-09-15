@@ -58,11 +58,20 @@ jobs:
       id: release
 
     - name: Publish docker image release
+      if: github.ref == 'master'
       uses: themakersteam/tmt-gh-actions/publish-docker-image-release@master
       with:
-        image: eu.gcr.io/tmt-tools-${{ steps.build.APP_ENVIRONMENT }}/flow-polling
+        image: eu.gcr.io/tmt-tools-production/flow-polling
         major-version: ${{ steps.release.outputs.major-version }}
         minor-version: ${{ steps.release.outputs.minor-version }}
         patch-version: ${{ steps.release.outputs.patch-version }}
         latest-tag: true
-    
+    - name: Publish docker image release
+      if: github.ref == 'staging'
+      uses: themakersteam/tmt-gh-actions/publish-docker-image-release@master
+      with:
+        image: eu.gcr.io/tmt-tools-staging/flow-polling
+        major-version: ${{ steps.release.outputs.major-version }}
+        minor-version: ${{ steps.release.outputs.minor-version }}
+        patch-version: ${{ steps.release.outputs.patch-version }}
+        latest-tag: true
