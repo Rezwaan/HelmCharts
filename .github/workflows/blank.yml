@@ -36,7 +36,7 @@ jobs:
         fi
         APP_ENVIRONMENT=APP_ENV
         
-        echo github.ref
+        echo ${{ github.ref }}
         # GCLOUD_SERVICE_ACCOUNT=${APP_ENV^^}_GCLOUD_SERVICE_ACCOUNT
         # echo ${!GCLOUD_SERVICE_ACCOUNT} > $HOME/gcloud-service-account.json
         # gcloud auth activate-service-account --key-file $HOME/gcloud-service-account.json
