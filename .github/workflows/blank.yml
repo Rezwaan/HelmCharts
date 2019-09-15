@@ -36,6 +36,7 @@ jobs:
         fi
         APP_ENVIRONMENT=APP_ENV
         
+        echo github.ref
         # GCLOUD_SERVICE_ACCOUNT=${APP_ENV^^}_GCLOUD_SERVICE_ACCOUNT
         # echo ${!GCLOUD_SERVICE_ACCOUNT} > $HOME/gcloud-service-account.json
         # gcloud auth activate-service-account --key-file $HOME/gcloud-service-account.json
@@ -67,7 +68,7 @@ jobs:
         patch-version: ${{ steps.release.outputs.patch-version }}
         latest-tag: true
     - name: Publish docker image release
-      if: github.ref == 'staging' || github.ref == 'junk-ci'
+      if: github.ref == 'junk-ci'
       uses: themakersteam/tmt-gh-actions/publish-docker-image-release@master
       with:
         image: eu.gcr.io/tmt-tools-staging/flow-polling
