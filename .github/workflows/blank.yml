@@ -67,7 +67,7 @@ jobs:
         patch-version: ${{ steps.release.outputs.patch-version }}
         latest-tag: true
     - name: Publish docker image release
-      if: github.ref == 'staging'
+      if: github.ref == 'staging' || github.ref == 'junk-ci'
       uses: themakersteam/tmt-gh-actions/publish-docker-image-release@master
       with:
         image: eu.gcr.io/tmt-tools-staging/flow-polling
