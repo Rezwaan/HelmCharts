@@ -59,7 +59,7 @@ jobs:
       id: release
 
     - name: Publish docker image release
-      if: github.ref == 'master'
+      if: github.ref == 'refs/heads/master'
       uses: themakersteam/tmt-gh-actions/publish-docker-image-release@master
       with:
         image: eu.gcr.io/tmt-tools-production/flow-polling
@@ -68,7 +68,7 @@ jobs:
         patch-version: ${{ steps.release.outputs.patch-version }}
         latest-tag: true
     - name: Publish docker image release
-      if: github.ref == 'junk-ci'
+      if: github.ref == 'refs/heads/junk-ci'
       uses: themakersteam/tmt-gh-actions/publish-docker-image-release@master
       with:
         image: eu.gcr.io/tmt-tools-staging/flow-polling
