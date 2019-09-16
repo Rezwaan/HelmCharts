@@ -22,8 +22,9 @@ jobs:
         export PAGER=$(git diff-tree --no-commit-id --name-only -r HEAD)
         echo "Changed Components are  => $PAGER"
         export COMPONENT="NOTSET"
-        for dir in ${PAGER[@]}
+        
         i=0
+        for dir in ${PAGER[@]}
         do
           dir_path=$(echo $dir | cut -d/ -f1)
           uniq_dir_arrays[i]=dir_path
