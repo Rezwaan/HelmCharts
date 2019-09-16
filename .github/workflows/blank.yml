@@ -27,7 +27,7 @@ jobs:
         for dir in ${PAGER[@]}
         do
           dir_path=$(echo $dir | cut -d/ -f1)
-          uniq_dir_arrays[i]=dir_path
+          uniq_dir_arrays[i]=$dir_path
           i=$(( i+1 ))
         done
 
