@@ -45,8 +45,8 @@ jobs:
           export COMPONENT_DIR="${dir%%/*}"
           echo "Changed Dir => $COMPONENT_DIR"
           cd $COMPONENT_DIR
-          echo "helm dep"
-          helm dep build
+          # echo "helm dep"
+          # helm dep build
           echo "helm package"
           helm package .
           echo "filename"
