@@ -1,78 +1,55 @@
-name: Publish
+name: chart publish
 
 on:
   push:
     branches:
       - master
-      - staging
-      - junk-ci
+      - actions-ci
 
 jobs:
-  publish:
-    name: Publish
+  build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout Code
       uses: actions/checkout@v1
 
-    - name: Build Image and Publish
-      id: build
+    - name: Validate and Upload Chart to Chart Museum
       env:
-          BRANCH: ${{ github.event.ref }}
-          STAGING_GCLOUD_SERVICE_ACCOUNT: ${{ secrets.STAGING_GCLOUD_SERVICE_ACCOUNT }}
-          PRODUCTION_GCLOUD_SERVICE_ACCOUNT: ${{ secrets.PRODUCTION_GCLOUD_SERVICE_ACCOUNT }}
-          APP_ENVIRONMENT: dummy
+        TMT_CHARTS_USERNAME: ${{ secrets.TMT_CHARTS_USERNAME }}
+        TMT_CHARTS_PASSWORD: ${{ secrets.TMT_CHARTS_PASSWORD }}
       run: |
-        BRANCH=${BRANCH#refs/heads/}
-        echo $BRANCH
+        export PAGER=$(git diff-tree --no-commit-id --name-only -r HEAD)
+        echo "Changed Components are  => $PAGER"
+        export COMPONENT="NOTSET"
+        unique_dirs=($(tr ' ' '\n' <<< "${PAGER[@]}" | sort -u | tr '\n' ' '))
+        echo "CHANGED DIRECTORIES ARE..."
+        for dir in ${unique_dirs[@]}
+        do
+          echo $dir        
+          if [[ "$dir" == .* ]]; then del="$dir"; fi
+        done
+
+        unique_dirs=("${unique_dirs[@]/$del}")
+        echo "UNIQUE HELM DIRECTORIES ..."
+        echo ${unique_dirs[@]}
+
+        echo "Initialize Helm and Upload Chart If Exists"
+        helm init --client-only
+        echo "Helm Adding Chart repo"
+        helm repo add charts https://charts.tmt.tools --username $TMT_CHARTS_USERNAME --password $TMT_CHARTS_PASSWORD
         
-        if [ $BRANCH == "master" ]; then
-          APP_ENV=production
-        elif [ $BRANCH == "staging" ]; then
-          APP_ENV=staging
-        elif [ $BRANCH == "junk-ci" ]; then
-          APP_ENV=staging
-        fi
-        APP_ENVIRONMENT=APP_ENV
-        
-        echo ${{ github.ref }}
-        # GCLOUD_SERVICE_ACCOUNT=${APP_ENV^^}_GCLOUD_SERVICE_ACCOUNT
-        # echo ${!GCLOUD_SERVICE_ACCOUNT} > $HOME/gcloud-service-account.json
-        # gcloud auth activate-service-account --key-file $HOME/gcloud-service-account.json
-
-        # PROJECT=tmt-tools-$APP_ENV
-        # echo $PROJECT
-
-        # IMAGE=eu.gcr.io/$PROJECT/flow-polling
-        # echo $IMAGE
-
-        # docker pull $IMAGE:1 || true
-
-        # docker build \
-        #   --cache-from $IMAGE:1 \
-        #   --tag $IMAGE \
-        #   .
-        
-    - name: Generate release version
-      uses: themakersteam/tmt-gh-actions/generate-release-version@master
-      id: release
-
-    - name: Publish docker image release
-      if: github.ref == 'refs/heads/master'
-      uses: themakersteam/tmt-gh-actions/publish-docker-image-release@master
-      with:
-        image: eu.gcr.io/tmt-tools-production/flow-polling
-        major-version: ${{ steps.release.outputs.major-version }}
-        minor-version: ${{ steps.release.outputs.minor-version }}
-        patch-version: ${{ steps.release.outputs.patch-version }}
-        latest-tag: true
-    - name: Publish docker image release
-      if: github.ref == 'refs/heads/junk-ci'
-      uses: themakersteam/tmt-gh-actions/publish-docker-image-release@master
-      with:
-        image: eu.gcr.io/tmt-tools-staging/flow-polling
-        major-version: ${{ steps.release.outputs.major-version }}
-        minor-version: ${{ steps.release.outputs.minor-version }}
-        patch-version: ${{ steps.release.outputs.patch-version }}
-        latest-tag: true
+        for dir in ${unique_dirs[@]}
+        do
+          echo $dir | cut -f1 -d"/"
+          export COMPONENT_DIR="${dir%%/*}"
+          echo "Changed Dir => $COMPONENT_DIR"
+          cd $COMPONENT_DIR
+          helm dep build
+          helm package .
+          FILENAME="$(find . \( -name "$COMPONENT_DIR*.tgz" \) -exec basename {} \;)"
+          if [ "$FILENAME" == "" ]; then echo "No Chart Version Found!" && exit 1;  fi
+          echo $FILENAME
+          curl --user $TMT_CHARTS_USERNAME:$TMT_CHARTS_PASSWORD --data-binary "@$FILENAME" https://charts.tmt.tools/api/charts
+          cd ..
+        done
