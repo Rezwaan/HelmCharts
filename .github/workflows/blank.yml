@@ -37,7 +37,7 @@ jobs:
         echo "Initialize Helm and Upload Chart If Exists"
         helm init --client-only
         echo "Helm Adding Chart repo"
-        helm repo add charts https://charts.tmt.tools --username $TMT_CHARTS_USERNAME --password $TMT_CHARTS_PASSWORD
+        helm repo add charts https://charts.tmt.tools --username $TMT_CHARTS_USERNAME --password $TMT_CHARTS_PASSWORD || true
         
         for dir in ${unique_dirs[@]}
         do
