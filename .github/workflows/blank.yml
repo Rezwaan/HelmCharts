@@ -35,18 +35,8 @@ jobs:
           fi
         done
 
-        echo ${uniq_dir_arrays[@]}
-
         unique_dirs=($(tr ' ' '\n' <<< "${uniq_dir_arrays[@]}" | sort -u | tr '\n' ' '))
 
-        echo "CHANGED DIRECTORIES ARE..."
-        for dir in ${unique_dirs[@]}
-        do
-          echo $dir        
-          if [[ "$dir" == .* ]]; then del="$dir"; fi
-        done
-
-        unique_dirs=("${unique_dirs[@]/$del}")
         echo "UNIQUE HELM DIRECTORIES ..."
         echo ${unique_dirs[@]}
 
