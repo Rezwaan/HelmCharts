@@ -32,6 +32,7 @@ jobs:
             dir_path=$(echo $dir | cut -d/ -f1)
             uniq_dir_arrays[i]=$dir_path
             i=$(( i+1 ))
+          fi
         done
 
         echo ${uniq_dir_arrays[@]}
