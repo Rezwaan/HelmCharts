@@ -28,7 +28,7 @@ jobs:
         i=0
         for dir in ${PAGER[@]} # This loop will pick all unique dirs
         do
-          if echo "$dir" | grep -q "Chart.yml"; then
+          if echo "$dir" | grep "Chart.yaml"; then
             dir_path=$(echo $dir | cut -d/ -f1)
             uniq_dir_arrays[i]=$dir_path
             i=$(( i+1 ))
