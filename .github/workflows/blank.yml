@@ -4,12 +4,14 @@ on:
   push:
     branches:
       - master
-      - junk-ci
+      - actions-ci
+    paths:
+      - '*/Chart.yml'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout Code
       uses: actions/checkout@v1
@@ -24,18 +26,18 @@ jobs:
         export COMPONENT="NOTSET"
         
         i=0
-        for dir in ${PAGER[@]}
+        for dir in ${PAGER[@]} # This loop will pick all unique dirs
         do
-          dir_path=$(echo $dir | cut -d/ -f1)
-          uniq_dir_arrays[i]=$dir_path
-          i=$(( i+1 ))
+          if echo "$dir" | grep -q "Chart.yml"; then
+            dir_path=$(echo $dir | cut -d/ -f1)
+            uniq_dir_arrays[i]=$dir_path
+            i=$(( i+1 ))
         done
 
         echo ${uniq_dir_arrays[@]}
 
-
-
         unique_dirs=($(tr ' ' '\n' <<< "${uniq_dir_arrays[@]}" | sort -u | tr '\n' ' '))
+
         echo "CHANGED DIRECTORIES ARE..."
         for dir in ${unique_dirs[@]}
         do
@@ -50,23 +52,19 @@ jobs:
         echo "Initialize Helm and Upload Chart If Exists"
         helm init --client-only
         echo "Helm Adding Chart repo"
-        helm repo add charts https://charts.tmt.tools --username $TMT_CHARTS_USERNAME --password $TMT_CHARTS_PASSWORD || true
-        
+        helm repo add charts https://charts.tmt.tools --username $TMT_CHARTS_USERNAME --password $TMT_CHARTS_PASSWORD
+
         for dir in ${unique_dirs[@]}
         do
           echo $dir | cut -f1 -d"/"
           export COMPONENT_DIR="${dir%%/*}"
           echo "Changed Dir => $COMPONENT_DIR"
           cd $COMPONENT_DIR
-          # echo "helm dep"
-          # helm dep build
-          # echo "helm package"
-          # helm package .
-          # echo "filename"
-          # FILENAME="$(find . \( -name "$COMPONENT_DIR*.tgz" \) -exec basename {} \;)"
-          # if [ "$FILENAME" == "" ]; then echo "No Chart Version Found!" && exit 1;  fi
-          # echo $FILENAME
-          # echo "helm upload"
-          # curl --user $TMT_CHARTS_USERNAME:$TMT_CHARTS_PASSWORD --data-binary "@$FILENAME" https://charts.tmt.tools/api/charts || true
+          helm dep build
+          helm package .
+          FILENAME="$(find . \( -name "$COMPONENT_DIR*.tgz" \) -exec basename {} \;)"
+          if [ "$FILENAME" == "" ]; then echo "No Chart Version Found!" && exit 1;  fi
+          echo $FILENAME
+          curl --user $TMT_CHARTS_USERNAME:$TMT_CHARTS_PASSWORD --data-binary "@$FILENAME" https://charts.tmt.tools/api/charts
           cd ..
         done
