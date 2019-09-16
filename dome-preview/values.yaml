@@ -1,6 +1,6 @@
 # Default values for dome-preview.
 # This is a YAML-formatted file.
-# Declare variables to be passed into your templatess..
+# Declare variables to be passed into your templates..
 
 dome-backend:
   enabled: true
